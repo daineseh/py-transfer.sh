@@ -2,7 +2,13 @@ py-transfer.sh
 ==============
 https://transfer.sh/
 
+transfer.sh (https://transfer.sh/
+) is a service that you can share your files. You can upload your files by drag and drop on that web site.
+Now you can upload and download files by using **pt.py** in your shell.
+
+
 transfer.sh wrapper
+
 
 usage: pt.py [-h] [-u FILE [FILE ...]] [-d URL [URL ...]] [-w DIR]
 
@@ -14,7 +20,7 @@ usage: pt.py [-h] [-u FILE [FILE ...]] [-d URL [URL ...]] [-w DIR]
 
 
 
-**example1 :**
+**Example1 : Upload a file**
 ```bash
     # Upload a file to http://transfer.sh
     $./pt.py -u /home/something/file1
@@ -24,7 +30,7 @@ usage: pt.py [-h] [-u FILE [FILE ...]] [-d URL [URL ...]] [-w DIR]
 ```
 
 
-**example2 :**
+**Example2 : Upload more files**
 ```bash
     # Upload multiple files to http://transfer.sh
     $./pt.py -u /home/something/file1  /home/something/file2  /home/something/file3
@@ -35,7 +41,7 @@ usage: pt.py [-h] [-u FILE [FILE ...]] [-d URL [URL ...]] [-w DIR]
     https://transfer.sh/19Xwp/file3
 ```
 
-**example3 :**
+**Example3 Download a file:**
 ```bash
     # download a file from http://transfer.sh
     ./pt.py -d https://transfer.sh/19Xwp/file1
@@ -44,7 +50,7 @@ usage: pt.py [-h] [-u FILE [FILE ...]] [-d URL [URL ...]] [-w DIR]
     Download ./file1 done.
 ```
 
-**example4 :**
+**Example4 : Download multiple files**
 ```bash
     # download multiple files from http://transfer.sh
     ./pt.py -d https://transfer.sh/19Xwp/file1  https://transfer.sh/1fn4k/file2
@@ -54,7 +60,7 @@ usage: pt.py [-h] [-u FILE [FILE ...]] [-d URL [URL ...]] [-w DIR]
     Download ./file2 done.
 ```
 
-**example5 :**
+**Example5 : Specify the download directory**
 ```bash
     # download multiple files and specify path from http://transfer.sh
     ./pt.py -d https://transfer.sh/19Xwp/file1  https://transfer.sh/1fn4k/file2 -w /home/user/
