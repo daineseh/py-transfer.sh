@@ -29,17 +29,17 @@ def add_options(p):
                    nargs='+', action=AddUploadPathAction,
                    default=[],
                    metavar='FILE',
-                   help='input upload file(s)')
+                   help='specify the path of file(s) you want to upload.')
 
-    p.add_argument('-d', dest='download_path',
+    p.add_argument('-d', dest='download_url',
                    nargs='+', action=AddDownloadPathAction,
                    default=[],
-                   metavar='FILE',
-                   help='input download file(s)')
+                   metavar='URL',
+                   help='specify one or more URL you want to download.')
 
     p.add_argument('-w', dest='work_path',
                    metavar='DIR',
-                   help='specify working path')
+                   help='specify a directory to download. The default directory is the working directory.')
 
 
     gd = p.add_argument_group('debug arguments')

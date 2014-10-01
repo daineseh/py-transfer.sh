@@ -4,13 +4,13 @@ https://transfer.sh/
 
 transfer.sh wrapper
 
-usage: pt.py [-h] [-u FILE [FILE ...]] [-d FILE [FILE ...]] [-w DIR]
+usage: pt.py [-h] [-u FILE [FILE ...]] [-d URL [URL ...]] [-w DIR]
 
 #optional arguments:
     -h, --help          show this help message and exit
-    -u FILE [FILE ...]  input upload file(s)
-    -d FILE [FILE ...]  input download file(s)
-    -w DIR              specify download path
+    -u FILE [FILE ...]  specify the path of file(s) you want to upload.
+    -d URL [URL ...]    specify one or more URL you want to download.
+    -w DIR              specify a directory to download. The default directory is the working directory.
 
 
 
