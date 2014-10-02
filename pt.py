@@ -23,8 +23,13 @@ def download(path_list, work_path):
 
 def upload(path_list):
     for path in path_list:
-        os.system('curl --upload-file %s https://transfer.sh/%s' % (path, os.path.basename(path)))
-
+        cmd = 'curl --upload-file %s https://transfer.sh/%s' %(path, os.path.basename(path))
+        try:
+            retcode = subprocess.call(cmd, shell=True)
+            if retcode < 0:
+                print 'Child was terminated by signal', -retcode
+        except OSError as e:
+            print 'Execution failed:', e
 
 def main():
     parser = argparse.ArgumentParser()
