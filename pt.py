@@ -23,14 +23,20 @@ def download(path_list, work_path):
 
 
 def upload(path_list):
+    url_list = []
     for path in path_list:
         cmd = 'curl --upload-file %s https://transfer.sh/%s' %(path, os.path.basename(path))
         try:
-            retcode = subprocess.call(shlex.split(cmd))
-            if retcode < 0:
-                print 'Child was terminated by signal', -retcode
+            url = subprocess.check_output(shlex.split(cmd))
+            url_list.append(url)
         except OSError as e:
             print 'Execution failed:', e
+
+    if not url_list:
+        return
+    print 'Now you can download file(s) by the following url(s):'
+    for url in url_list:
+        print url,
 
 def main():
     parser = argparse.ArgumentParser()
