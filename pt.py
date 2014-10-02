@@ -2,16 +2,23 @@
 
 import argparse
 import os
+import subprocess
 
 import option
 
 def download(path_list, work_path):
     for path in path_list:
         save_path = os.path.join(work_path, os.path.basename(path))
-        if os.system('curl -s %s -o %s' % (path, save_path)):
-            print "Error download - %s" % path
-            break
-        print "Download %s done." % save_path
+        cmd ='curl -s %s -o %s' %(path, save_path)
+        try:
+            retcode = subprocess.call(cmd, shell=True)
+            if retcode != 0:
+                print "Error download - %s" % path
+                break
+        except OSError as e:
+            print 'Execution failed:', e
+
+        print 'Download %s done.' %save_path
 
 
 def upload(path_list):
