@@ -2,6 +2,7 @@
 
 import argparse
 import os
+import shlex
 import subprocess
 
 import option
@@ -11,7 +12,7 @@ def download(path_list, work_path):
         save_path = os.path.join(work_path, os.path.basename(path))
         cmd ='curl -s %s -o %s' %(path, save_path)
         try:
-            retcode = subprocess.call(cmd, shell=True)
+            retcode = subprocess.call(shlex.split(cmd))
             if retcode != 0:
                 print "Error download - %s" % path
                 break
@@ -25,7 +26,7 @@ def upload(path_list):
     for path in path_list:
         cmd = 'curl --upload-file %s https://transfer.sh/%s' %(path, os.path.basename(path))
         try:
-            retcode = subprocess.call(cmd, shell=True)
+            retcode = subprocess.call(shlex.split(cmd))
             if retcode < 0:
                 print 'Child was terminated by signal', -retcode
         except OSError as e:
