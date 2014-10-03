@@ -26,15 +26,17 @@ def upload(path_list):
     url_list = []
     for path in path_list:
         cmd = 'curl -s --upload-file %s https://transfer.sh/%s' %(path, os.path.basename(path))
+        print 'We are uploading %s.' %os.path.basename(path)
         try:
             url = subprocess.check_output(shlex.split(cmd))
             url_list.append(url)
         except OSError as e:
             print 'Execution failed:', e
+        print '%s is successfully uploaded.' %os.path.basename(path)
 
     if not url_list:
         return
-    print 'Now you can download file(s) by the following url(s):'
+    print '\nNow you can download file(s) by the following url(s):'
     for url in url_list:
         print url,
 
