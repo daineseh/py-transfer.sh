@@ -1,6 +1,7 @@
 #! /usr/bin/env python2
 
 import argparse
+import urllib2
 import os
 import shlex
 import subprocess
@@ -9,17 +10,18 @@ import option
 
 def download(path_list, work_path):
     for path in path_list:
-        save_path = os.path.join(work_path, os.path.basename(path))
-        cmd ='curl -s %s -o %s' %(path, save_path)
         try:
-            retcode = subprocess.call(shlex.split(cmd))
-            if retcode != 0:
-                print "Error download - %s" % path
-                break
-        except OSError as e:
-            print 'Execution failed:', e
+            response = urllib2.urlopen('%s' % path)
+        except urllib2.HTTPError, e:
+            print e
+            print "Could not retrieve file: %s" % path
+            continue
 
-        print 'Download %s done.' %save_path
+        save_path = os.path.join(work_path, os.path.basename(path))
+        fp = open(save_path, 'w')
+        fp.write(response.read())
+        fp.close()
+        print 'Download %s done.' % save_path
 
 
 def upload(path_list):
