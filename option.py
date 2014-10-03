@@ -1,4 +1,6 @@
 import argparse
+import os
+import sys
 
 class Option(object):
     def __init__(self):
@@ -12,6 +14,14 @@ class AddUploadPathAction(argparse.Action):
     def __call__(self, parser, namespace, values, option_string=None):
         if not isinstance(values, list):
             raise argparse.ArgumentTypeError
+
+        for path in values:
+            if os.path.isdir(path):
+                print '[Warning] %s is a directory.' %path
+                print 'Sorry. We do not suport upload a directory.'
+                print 'You can archive that directory by tar, zip, ...'
+                sys.exit(-1)
+
         namespace.upload_path.extend(values)
 
 
