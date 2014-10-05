@@ -17,8 +17,8 @@ class AddUploadPathAction(argparse.Action):
 
         for path in values:
             if os.path.isdir(path):
-                print '[Warning] %s is a directory.' %path
-                print 'Sorry. We do not suport upload a directory.'
+                print '[Error] %s%s%s is a directory.' %(bcolors.FAIL, path, bcolors.ENDC)
+                print 'We don\'t suport uploading a directory.',
                 print 'You can archive that directory by tar, zip, ...'
                 sys.exit(-1)
 
@@ -29,6 +29,12 @@ class AddDownloadPathAction(argparse.Action):
     def __call__(self, parser, namespace, values, option_string=None):
         if not isinstance(values, list):
             raise argparse.ArgumentTypeError
+
+        for url in values:
+            if not url.startswith('https://transfer.sh/'):
+                print '[Error] %s%s%s is not a valid url to download.' %(bcolors.FAIL, url, bcolors.ENDC)
+                sys.exit(-1)
+
         namespace.download_path.extend(values)
 
 
@@ -57,3 +63,9 @@ def add_options(p):
     gd.add_argument('--debug',
                     action='store_true',
                     help=argparse.SUPPRESS)
+
+
+class bcolors(object):
+    FAIL = '\033[91m'
+    ENDC  = '\033[0m'
+
