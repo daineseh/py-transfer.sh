@@ -3,6 +3,7 @@
 import argparse
 import urllib2
 import os
+import sys
 import shlex
 import subprocess
 
@@ -42,6 +43,17 @@ def upload(path_list):
     for url in url_list:
         print url,
 
+
+def has_curl():
+    try:
+        fnull = open(os.devnull, 'w')
+        subprocess.check_call(["which", "curl"], stdout=fnull, stderr=fnull)
+        fnull.close()
+        return True
+    except subprocess.CalledProcessError:
+        return False
+
+
 def main():
     parser = argparse.ArgumentParser()
     option.add_options(parser)
@@ -53,6 +65,9 @@ def main():
         upload(opts.upload_path)
 
     if opts.download_path:
+        if not has_curl():
+            print 'We need curl to work. Please install it(http://curl.haxx.se/) on you system.'
+            sys.exit(-1)
         download(opts.download_path, opts.work_path)
 
 if __name__ == '__main__':
