@@ -17,9 +17,9 @@ class AddUploadPathAction(argparse.Action):
 
         for path in values:
             if os.path.isdir(path):
-                print '[Error] %s%s%s is a directory.' %(bcolors.FAIL, path, bcolors.ENDC)
-                print 'We don\'t suport uploading a directory.',
-                print 'You can archive that directory by tar, zip, ...'
+                sys.stderr.write('[Error] %s%s%s is a directory.\n' %(bcolors.FAIL, path, bcolors.ENDC))
+                sys.stderr.write("We don't suport uploading a directory.\n")
+                sys.stderr.write('You can archive that directory by tar, zip, ...\n')
                 sys.exit(-1)
 
         namespace.upload_path.extend(values)
@@ -32,7 +32,7 @@ class AddDownloadPathAction(argparse.Action):
 
         for url in values:
             if not url.startswith('https://transfer.sh/'):
-                print '[Error] %s%s%s is not a valid url to download.' %(bcolors.FAIL, url, bcolors.ENDC)
+                sys.stderr.write('[Error] %s%s%s is not a valid url to download.' %(bcolors.FAIL, url, bcolors.ENDC))
                 sys.exit(-1)
 
         namespace.download_path.extend(values)

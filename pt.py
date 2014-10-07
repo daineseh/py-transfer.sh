@@ -14,8 +14,8 @@ def download(path_list, work_path):
         try:
             response = urllib2.urlopen('%s' % path)
         except urllib2.HTTPError, e:
-            print e
-            print "Could not retrieve file: %s" % path
+            sys.stderr.write('%s\n' %e)
+            sys.stderr.write("Could not retrieve file: %s\n" % path)
             continue
 
         save_path = os.path.join(work_path, os.path.basename(path))
@@ -34,7 +34,7 @@ def upload(path_list):
             url = subprocess.check_output(shlex.split(cmd))
             url_list.append(url)
         except OSError as e:
-            print 'Execution failed:', e
+            sys.stderr.write('Execution failed: %s\n' %e)
         print '%s is successfully uploaded.' %os.path.basename(path)
 
     if not url_list:
@@ -66,7 +66,7 @@ def main():
 
     if opts.download_path:
         if not has_curl():
-            print 'We need curl to work. Please install it(http://curl.haxx.se/) on you system.'
+            sys.stderr.write('We need curl to work. Please install it(http://curl.haxx.se/) on you system.\n')
             sys.exit(-1)
         download(opts.download_path, opts.work_path)
 
