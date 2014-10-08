@@ -35,6 +35,10 @@ class AddDownloadPathAction(argparse.Action):
                 sys.stderr.write('[Error] %s%s%s is not a valid url to download.' %(bcolors.FAIL, url, bcolors.ENDC))
                 sys.exit(-1)
 
+            if not len(url[len('https://transfer.sh/'):].split('/')) == 2:
+                sys.stderr.write('[Error] %s%s%s is not a valid url to download.' %(bcolors.FAIL, url, bcolors.ENDC))
+                sys.exit(-1)
+
         namespace.download_path.extend(values)
 
 
