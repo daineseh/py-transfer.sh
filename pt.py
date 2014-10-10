@@ -26,6 +26,18 @@ def download(path_list, work_path):
 
 
 def upload(path_list):
+    if len(path_list) == 1:
+        print '---'
+        print 'The following file will be uploaded:'
+        print path_list[0]
+        print '---'
+    else:
+        print '---'
+        print 'The following files will be uploaded:'
+        for file_ in path_list:
+            print file_
+        print '---'
+
     url_list = []
     for path in path_list:
         cmd = 'curl -s --upload-file %s https://transfer.sh/%s' %(path, os.path.basename(path))
