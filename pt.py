@@ -10,6 +10,7 @@ import subprocess
 import option
 
 def download(path_list, work_path):
+    assert isinstance(path_list, list)
     for path in path_list:
         try:
             response = urllib2.urlopen('%s' % path)
@@ -26,6 +27,8 @@ def download(path_list, work_path):
 
 
 def upload(path_list):
+    assert isinstance(path_list, list)
+
     if len(path_list) == 1:
         print '---'
         print 'The following file will be uploaded:'
