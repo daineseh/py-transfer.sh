@@ -22,6 +22,14 @@ class AddUploadPathAction(argparse.Action):
                 sys.stderr.write('You can archive that directory by tar, zip, ...\n')
                 sys.exit(-1)
 
+            elif not os.path.exists(path):
+                sys.stderr.write('[Error] %s%s%s does not exists.\n' % (bcolors.FAIL, path, bcolors.ENDC))
+                sys.exit(-1)
+
+            elif os.path.getsize(path) > 5 * (1024 ** 3):  # file size limit below 5GB.
+                sys.stderr.write('[Error] %s%s%s exceeded upload limit 5GB.\n' % (bcolors.FAIL, path, bcolors.ENDC))
+                sys.exit(-1)
+
         namespace.upload_path.extend(values)
 
 
