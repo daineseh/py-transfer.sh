@@ -22,7 +22,7 @@ usage: pt.py [-h] [-u FILE [FILE ...]] [-d URL [URL ...]] [-w DIR]
 
 **Example1 : Upload a file**
 ```bash
-    # Upload a file to http://transfer.sh
+    # Upload a file to https://transfer.sh
     $./pt.py -u /home/something/file1
 
     # and output a link for download:
@@ -32,7 +32,7 @@ usage: pt.py [-h] [-u FILE [FILE ...]] [-d URL [URL ...]] [-w DIR]
 
 **Example2 : Upload more files**
 ```bash
-    # Upload multiple files to http://transfer.sh
+    # Upload multiple files to https://transfer.sh
     $./pt.py -u /home/something/file1  /home/something/file2  /home/something/file3
 
     # and output some link for downloads:
@@ -43,7 +43,7 @@ usage: pt.py [-h] [-u FILE [FILE ...]] [-d URL [URL ...]] [-w DIR]
 
 **Example3 Download a file:**
 ```bash
-    # download a file from http://transfer.sh
+    # download a file from https://transfer.sh
     ./pt.py -d https://transfer.sh/19Xwp/file1
     
     # Print download information:
@@ -52,7 +52,7 @@ usage: pt.py [-h] [-u FILE [FILE ...]] [-d URL [URL ...]] [-w DIR]
 
 **Example4 : Download multiple files**
 ```bash
-    # download multiple files from http://transfer.sh
+    # download multiple files from https://transfer.sh
     ./pt.py -d https://transfer.sh/19Xwp/file1  https://transfer.sh/1fn4k/file2
     
     # Print downloads information:
@@ -62,7 +62,7 @@ usage: pt.py [-h] [-u FILE [FILE ...]] [-d URL [URL ...]] [-w DIR]
 
 **Example5 : Specify the download directory**
 ```bash
-    # download multiple files and specify path from http://transfer.sh
+    # download multiple files and specify path from https://transfer.sh
     ./pt.py -d https://transfer.sh/19Xwp/file1  https://transfer.sh/1fn4k/file2 -w /home/user/
     
     # Print downloads information:
