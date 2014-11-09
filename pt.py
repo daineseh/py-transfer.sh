@@ -7,7 +7,7 @@ import sys
 import shlex
 import subprocess
 
-import option
+import transfer_option
 
 def download(path_list, work_path):
     assert isinstance(path_list, list)
@@ -71,9 +71,9 @@ def has_curl():
 
 def main():
     parser = argparse.ArgumentParser()
-    option.add_options(parser)
+    transfer_option.add_options(parser)
 
-    opts = option.Option()
+    opts = transfer_option.Option()
     parser.parse_args(namespace=opts)
 
     if opts.upload_path:
