@@ -58,6 +58,8 @@ def upload(path_list):
     for url in url_list:
         print url,
 
+    print '\nFile(s) you upload will be stroed for 14 days.'
+
 
 def has_curl():
     try:
