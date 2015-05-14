@@ -9,6 +9,13 @@ Now you can upload and download files by using **pt.py** in your shell.
 
 transfer.sh wrapper
 
+# Install
+```bash
+
+    $ git clone https://github.com/daineseh/py-transfer.sh
+    $ cd py-transfer.sh
+    $ python setup.py install
+```
 
 usage: pt.py [-h] [-u FILE [FILE ...]] [-d URL [URL ...]] [-w DIR]
 
