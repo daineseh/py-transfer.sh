@@ -9,7 +9,7 @@ maintainer_email = [author_email, 'archaicdust@gmail.com']
 long_description = open('README.md').read() + "\n\n"
 
 setup(name='pytranfer',
-      version='1.0',
+      version='1.1',
       description='a tranfer.sh wrapper',
       long_description=long_description,
       author=', '.join(author),

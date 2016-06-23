@@ -43,7 +43,7 @@ def upload(path_list):
 
     url_list = []
     for path in path_list:
-        cmd = 'curl -s --upload-file %s https://transfer.sh/%s' %(path, os.path.basename(path))
+        cmd = 'curl --upload-file %s https://transfer.sh/%s' %(path.replace(' ', '\ '), os.path.basename(path).replace(' ', '_'))
         print 'We are uploading %s.' %os.path.basename(path)
         try:
             url = subprocess.check_output(shlex.split(cmd))
